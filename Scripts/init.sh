@@ -20,9 +20,18 @@ POLICY_NAME="${POLICY_NAME:-m346-facerec-lambda-policy}"
 FALLBACK_ROLES=("LabRole" "vocareum" "VoclabsRole" "AWSLabRole" "LearnerLabRole")
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-LAMBDA_SRC_DIR="${ROOT_DIR}/FaceRecognitionLambda/FaceRecognitionLambda"
+
+# csproj automatisch finden (erwartet genau 1 Lambda-Projekt im Repo)
+CSPROJ_PATH="$(find "$ROOT_DIR" -maxdepth 5 -name "*.csproj" | head -n 1)"
+[[ -n "$CSPROJ_PATH" ]] || { echo "ERROR: Keine .csproj Datei gefunden."; exit 1; }
+
+LAMBDA_SRC_DIR="$(dirname "$CSPROJ_PATH")"
 PUBLISH_DIR="${LAMBDA_SRC_DIR}/publish"
 ZIP_PATH="${PUBLISH_DIR}/lambda.zip"
+
+echo "Projekt:      ${CSPROJ_PATH}"
+echo "Publish Dir:  ${PUBLISH_DIR}"
+
 
 # -----------------------------
 # Helpers
