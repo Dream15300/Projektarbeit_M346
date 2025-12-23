@@ -1,0 +1,47 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowCloudWatchLogs",
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "AllowRekognitionCelebrities",
+      "Effect": "Allow",
+      "Action": [
+        "rekognition:RecognizeCelebrities"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "AllowS3ReadFromInBucket",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:GetObjectTagging",
+        "s3:GetObjectVersion"
+      ],
+      "Resource": [
+        "arn:aws:s3:::${IN_BUCKET}/*"
+      ]
+    },
+    {
+      "Sid": "AllowS3WriteToOutBucket",
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:PutObjectTagging",
+        "s3:AbortMultipartUpload"
+      ],
+      "Resource": [
+        "arn:aws:s3:::${OUT_BUCKET}/*"
+      ]
+    }
+  ]
+}

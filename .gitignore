@@ -1,0 +1,18 @@
+# Build artifacts
+bin/
+obj/
+publish/
+dist/
+*.zip
+
+# OS / IDE
+.vscode/
+.idea/
+*.user
+*.suo
+*.cache
+.DS_Store
+
+# Local test outputs
+recognized.json
+.env
