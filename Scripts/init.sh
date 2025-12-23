@@ -21,7 +21,7 @@ export AWS_PAGER=""
 # Nutzung:
 #   ./Scripts/init.sh
 #   ENV-Overrides (optional):
-#     AWS_REGION=eu-central-1
+#     AWS_REGION=us-east-1
 #     PROJECT_PREFIX=m346-facerec
 #     IN_BUCKET=<name>
 #     OUT_BUCKET=<name>
