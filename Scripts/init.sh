@@ -195,7 +195,8 @@ deploy_lambda() {
   require_cmd zip
 
   log "dotnet publish (net8.0) ..."
-  dotnet publish "${LAMBDA_SRC_DIR}/FaceRecognitionLambda.csproj" -c Release -o "$PUBLISH_DIR" >/dev/null
+  dotnet publish "$CSPROJ_PATH" -c Release -o "$PUBLISH_DIR"
+
 
   # ZIP neu erzeugen (idempotent)
   rm -f "$ZIP_PATH"
